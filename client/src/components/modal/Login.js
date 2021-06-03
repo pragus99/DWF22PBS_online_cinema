@@ -10,7 +10,6 @@ const Login = ({ toggle, handleClose }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const config = { headers: { "Content-Type": "application/json" } };
       const body = JSON.stringify({ email, password });

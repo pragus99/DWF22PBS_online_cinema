@@ -9,7 +9,6 @@ const Register = ({ toggle, handleClose }) => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
       const users = { email, password, fullName };
       const config = { headers: { "Content-Type": "application/json" } };
