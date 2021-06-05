@@ -351,6 +351,11 @@
   margin-left: 90px;
 }
 
+.midtrans {
+  color: green;
+  margin-bottom: 0;
+}
+
 tbody,
 td,
 tfoot,

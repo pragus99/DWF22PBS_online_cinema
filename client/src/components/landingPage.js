@@ -56,7 +56,7 @@ const Page = ({ data }) => {
             fade
           >
             {data.map((item, index) => (
-              <Carousel.Item key={item.id + index}>
+              <Carousel.Item key={item.title + item.category + index}>
                 <img
                   className="carousel-img"
                   src={`http://localhost:9000/${item.thumbnail}`}

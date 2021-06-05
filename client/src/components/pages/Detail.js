@@ -13,6 +13,7 @@ import { API } from "../service/api";
 
 import Loading from "../../assets/Process.gif";
 import { UserContext } from "../service/userContext";
+import Snap from "../modal/Snap";
 
 const Detail = () => {
   const [state] = useContext(UserContext);
@@ -69,12 +70,15 @@ const Detail = () => {
               <h1>{data.title}</h1>
               {state?.user?.role === 0 ? (
                 playFilm && playFilm.length === 1 ? null : (
-                  <Buy
-                    refresh={refetch}
-                    price={data.price}
-                    filmid={id}
-                    judul={data.title}
-                  />
+                  <>
+                    <Snap data={data} />
+                    <Buy
+                      refresh={refetch}
+                      price={data.price}
+                      filmid={id}
+                      judul={data.title}
+                    />
+                  </>
                 )
               ) : (
                 <Link className="btn-mymodal btn-buy" to={`/updateform/${id}`}>

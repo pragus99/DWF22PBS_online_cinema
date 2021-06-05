@@ -378,7 +378,7 @@ button:hover {
 
 /* cards */
 .mycards {
-  margin: 10px 60px;
+  margin: 10px 53px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -387,7 +387,50 @@ button:hover {
 .mycard-img {
   margin: 15px;
   object-fit: cover;
-  width: 190px;
-  height: 250px;
+  width: 180px;
+  height: 230px;
   border-radius: 5px;
+}
+
+/* paginaiton */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.prev-btn,
+.next-btn {
+  opacity: 1;
+}
+
+.prev,
+.next {
+  background: rgba(30, 41, 66, 0.5);
+  color: wheat;
+  display: flex;
+  align-items: center;
+  padding: 5px 2px;
+  border: none;
+  border-radius: 5px;
+  margin: 0 20px 40px 0;
+}
+
+.prev:hover,
+.next:hover {
+  background: rgba(30, 41, 66, 1);
+}
+
+.next {
+  margin: 0 0 40px 0;
+}
+
+.prev.disabled,
+.next.disabled {
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.nopost {
+  text-align: center;
 }

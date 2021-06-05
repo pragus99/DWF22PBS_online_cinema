@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   Transaction.init(
     {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: sequelize.UUIDV4,
+      },
       status: {
         type: DataTypes.STRING,
         defaultValue: "pending",

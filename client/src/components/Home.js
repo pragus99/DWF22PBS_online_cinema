@@ -5,6 +5,7 @@ import Card from "./Card";
 import LandingPage from "./landingPage";
 
 import Loading from "../assets/Process.gif";
+import Pagination from "./Pagination";
 let socket;
 
 const Home = () => {
@@ -59,10 +60,11 @@ const Home = () => {
         })
     );
   }, [category, films]);
-
-  console.log(filterCategory);
   return (
     <div className="home">
+      <div className="notfound">
+        {loading && <img src={Loading} alt="Loading" />}
+      </div>
       <LandingPage data={films} />
       <div className="header-listfilm">
         <h4 className="title-listfilm">List Film</h4>
@@ -73,14 +75,23 @@ const Home = () => {
           onChange={(e) => setCategory(e.target.value)}
         />
       </div>
-      {films && (
-        <div className="mycards">
-          <Card home={filterCategory} />
-        </div>
-      )}
       <div className="notfound">
         {loading && <img src={Loading} alt="Loading" />}
       </div>
+      {filterCategory && filterCategory.length > 0 ? (
+        <>
+          <Pagination
+            Card={Card}
+            data={filterCategory}
+            title="listFilms"
+            limit={24}
+          />
+        </>
+      ) : (
+        <div className="nopost">
+          <h1>No Film to display</h1>
+        </div>
+      )}
     </div>
   );
 };

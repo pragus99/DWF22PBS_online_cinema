@@ -84,7 +84,7 @@ const Buy = ({ filmid, judul, refresh, price }) => {
   return (
     <>
       <button className="btn-mymodal btn-buy" onClick={handleShow}>
-        Buy Now
+        Direct Payment
       </button>
 
       <Modal centered show={popUp} onHide={popUpClose}>

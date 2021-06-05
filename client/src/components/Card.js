@@ -6,7 +6,7 @@ import Modal from "./modal/Modal";
 import Login from "./modal/Login";
 import Register from "./modal/Register";
 
-const Card = ({ home, myfilms }) => {
+const Card = ({ myfilms, home }) => {
   const [state] = useContext(UserContext);
 
   const [showLogin, setShowLogin] = useState(false);
@@ -32,6 +32,7 @@ const Card = ({ home, myfilms }) => {
     setShowLogin(true);
     setShowRegister(false);
   };
+
   return (
     <>
       <Modal show={showLogin} handleClose={handleCloseLogin}>
@@ -42,8 +43,8 @@ const Card = ({ home, myfilms }) => {
       </Modal>
 
       {home &&
-        home.map((content, index) => (
-          <div key={content.id + index}>
+        home().map((content) => (
+          <div key={content.id + content.price}>
             {state.login ? (
               <Link to={`/detail/${content.id}`}>
                 <img
@@ -53,21 +54,21 @@ const Card = ({ home, myfilms }) => {
                 />
               </Link>
             ) : (
-              <Link onClick={handleShowLogin}>
+              <label onClick={handleShowLogin}>
                 <img
                   className="mycard-img"
                   src={`http://localhost:9000/${content.thumbnail}`}
                   alt=""
                 />
-              </Link>
+              </label>
             )}
           </div>
         ))}
 
       {myfilms &&
-        myfilms.map((content, index) =>
+        myfilms().map((content, index) =>
           content.personId === state?.user?.id ? (
-            <div key={content.personId + index}>
+            <div key={content.personId + content.film.thumbnail}>
               <Link title={content.personId} to={`/detail/${content.film.id}`}>
                 <img
                   className="mycard-img"

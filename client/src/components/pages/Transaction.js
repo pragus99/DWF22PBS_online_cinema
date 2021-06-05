@@ -71,7 +71,7 @@ const View = () => {
                 <th scope="col">Users</th>
                 <th scope="col">Bukti Transfer</th>
                 <th scope="col">Film</th>
-                <th scope="col">Number Account</th>
+                <th scope="col">Number Account/Order Id</th>
                 <th scope="col">Status Payment</th>
                 <th scope="col">Action</th>
               </tr>
@@ -81,9 +81,24 @@ const View = () => {
                 <tr key={content.id + index}>
                   <td>{index + 1}</td>
                   <td>{content.person.fullName}</td>
-                  <td>{content.transferProof}</td>
+                  <td>
+                    {content.transferProof ? (
+                      content.transferProof
+                    ) : (
+                      <p className="midtrans">Transaction with Midtrans</p>
+                    )}
+                  </td>
                   <td>{content.film.title}</td>
-                  <td>{content.accountNumber}</td>
+                  <td>
+                    {content.accountNumber ? (
+                      content.accountNumber
+                    ) : (
+                      <>
+                        <p>{content.id}</p>
+                        <p className="midtrans">Transaction with Midtrans</p>
+                      </>
+                    )}
+                  </td>
                   {content.status === "approve" ? (
                     <td className="table-status-success">Approve</td>
                   ) : null}

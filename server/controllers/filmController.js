@@ -1,5 +1,8 @@
 const { Film, Category } = require("../models");
+const { Sequelize } = require("sequelize");
+
 const fs = require("fs");
+const midtransClient = require("midtrans-client");
 
 exports.getFilms = async () => {
   let dataFilms = await Film.findAll({
@@ -15,6 +18,7 @@ exports.getFilms = async () => {
     attributes: {
       exclude: ["createdAt", "updatedAt", "categoryId"],
     },
+    order: [["id", "DESC"]],
   });
   dataFilms = JSON.parse(JSON.stringify(dataFilms));
 
@@ -103,6 +107,48 @@ exports.createFilm = async (req, res) => {
     res.status(500).send({
       status: "failed",
       message: "server error",
+    });
+  }
+};
+
+exports.orderFilm = async (req, res) => {
+  try {
+    const { customer, order_id, total_amount } = req.body;
+
+    const snap = new midtransClient.Snap({
+      isProduction: false,
+      serverKey: "SB-Mid-server-MtFP6QCMW7nSpIsrEHqFBuQb",
+    });
+
+    let parameter = {
+      transaction_details: {
+        order_id: order_id,
+        gross_amount: total_amount,
+      },
+      credit_card: {
+        secure: true,
+      },
+      customer_details: {
+        first_name: customer.name,
+        last_name: "",
+        email: customer.email,
+        phone: customer.phone,
+      },
+    };
+    snap.createTransaction(parameter).then((transaction) => {
+      const transactionToken = transaction.token;
+      res.send({
+        status: "success",
+        data: {
+          token: transactionToken,
+        },
+      });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      status: "error",
+      status: "server error",
     });
   }
 };

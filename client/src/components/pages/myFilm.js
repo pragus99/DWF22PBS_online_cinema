@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import Card from "../Card";
 import { API } from "../service/api";
 import Loading from "../../assets/Process.gif";
+import Pagination from "../Pagination";
 
 const MyFilm = () => {
   const [category, setCategory] = useState("");
   const [filterCategory, setFilterCategory] = useState([]);
 
-  let { isLoading, error, data } = useQuery("usermyfilms", async () => {
+  let { isLoading, data } = useQuery("usermyfilms", async () => {
     const response = await API.get("/my-films");
     return response.data.data;
   });
@@ -44,7 +45,6 @@ const MyFilm = () => {
         })
     );
   }, [category, data]);
-
   return (
     <>
       <div className="header-myfilm">
@@ -57,24 +57,24 @@ const MyFilm = () => {
         />
       </div>
 
-      <div className="home">
-        {data && (
-          <div className="mycards">
-            <Card myfilms={filterCategory} />
-          </div>
-        )}
-      </div>
-
       <div className="notfound">
         {isLoading && <img src={Loading} alt="Loading" />}
-        {error && (
-          <>
-            <div className="myfilmerror alert alert-danger py-1">
-              <small>There no data</small>
-            </div>
-          </>
-        )}
       </div>
+
+      {filterCategory && filterCategory.length > 0 ? (
+        <>
+          <Pagination
+            Card={Card}
+            data={filterCategory}
+            title="myfilms"
+            limit={42}
+          />
+        </>
+      ) : (
+        <div className="nopost">
+          <h1>No Film to display</h1>
+        </div>
+      )}
     </>
   );
 };

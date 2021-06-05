@@ -9,38 +9,51 @@ const { admin } = require("../middleware/admin");
 
 const { uploadImg } = require("../middleware/uploadImg");
 
-// user
-
 const { register, login, authUser } = require("../controllers/authController");
-router.post("/register", register);
-router.post("/login", login);
-router.get("/authuser", auth, authUser);
-
+const {
+  getCategories,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+} = require("../controllers/categoryController");
 const {
   getFilm,
   createFilm,
   updateFilm,
   deleteFilm,
+  orderFilm,
 } = require("../controllers/filmController");
-router.get("/film/:id", auth, getFilm);
-
 const {
   getPersons,
   getPerson,
   updatePerson,
   deletePerson,
 } = require("../controllers/personController");
-router.get("/profile/:id", auth, getPerson);
-router.patch("/profile/:id", uploadImg("avatar"), auth, updatePerson);
-
 const {
   createTransaction,
   getTransactions,
   updateTransaction,
   deleteTransaction,
   getTransactionsByUser,
+  sendMail,
+  notification,
 } = require("../controllers/transactionController");
+
+// user
+
+router.post("/register", register);
+router.post("/login", login);
+router.get("/authuser", auth, authUser);
+
+router.get("/film/:id", auth, getFilm);
+router.post("/order", orderFilm);
+
+router.get("/profile/:id", auth, getPerson);
+router.patch("/profile/:id", uploadImg("avatar"), auth, updatePerson);
+
 router.get("/my-films", auth, getTransactionsByUser);
+router.post("/notification", notification);
+router.post("/mail-notif", sendMail);
 router.post(
   "/transaction",
   auth,
@@ -51,12 +64,6 @@ router.patch("/transaction/:id", auth, updateTransaction);
 
 // Admin
 
-const {
-  getCategories,
-  createCategory,
-  updateCategory,
-  deleteCategory,
-} = require("../controllers/categoryController");
 router.get("/category", admin, getCategories);
 router.post("/category", admin, createCategory);
 router.patch("/category/:id", admin, updateCategory);

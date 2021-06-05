@@ -142,6 +142,7 @@ exports.login = async (req, res) => {
           fullName: checkEmail.fullName,
           email: checkEmail.email,
           avatar: checkEmail.avatar,
+          phone: checkEmail.phone,
           role: checkEmail.is_admin,
           token,
           transaction: checkEmail.transaction,
