@@ -1,5 +1,4 @@
 const { Film, Category } = require("../models");
-const { Sequelize } = require("sequelize");
 
 const fs = require("fs");
 const midtransClient = require("midtrans-client");

@@ -25,10 +25,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       filmUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT("tiny"),
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       thumbnail: {
         type: Sequelize.STRING,
