@@ -7,7 +7,7 @@ import { UserContext } from "../service/userContext";
 import convert from "../service/convert";
 import { API } from "../service/api";
 
-const Buy = ({ filmid, judul, refresh, price, close }) => {
+const Buy = ({ filmid, judul, refresh, price }) => {
   const [state] = useContext(UserContext);
   const [show, setShow] = useState(false);
   const [preview, setPreview] = useState(null);
