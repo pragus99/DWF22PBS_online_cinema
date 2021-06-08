@@ -3,10 +3,10 @@ import { API } from "../service/api";
 
 const DeleteFilm = ({ filmid, title, refresh, handleClose }) => {
   const deleteById = async (filmid) => {
-    deleteFund.mutate(filmid);
+    handleDelete.mutate(filmid);
   };
 
-  const deleteFund = useMutation(async (id) => {
+  const handleDelete = useMutation(async (id) => {
     await API.delete(`/film/${id}`);
     refresh();
     handleClose();

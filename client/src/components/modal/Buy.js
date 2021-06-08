@@ -7,7 +7,7 @@ import { UserContext } from "../service/userContext";
 import convert from "../service/convert";
 import { API } from "../service/api";
 
-const Buy = ({ filmid, judul, refresh, price }) => {
+const Buy = ({ filmid, judul, refresh, price, close }) => {
   const [state] = useContext(UserContext);
   const [show, setShow] = useState(false);
   const [preview, setPreview] = useState(null);
@@ -84,7 +84,7 @@ const Buy = ({ filmid, judul, refresh, price }) => {
   return (
     <>
       <button className="btn-mymodal btn-buy" onClick={handleShow}>
-        Direct Payment
+        Bank Transfer
       </button>
 
       <Modal centered show={popUp} onHide={popUpClose}>

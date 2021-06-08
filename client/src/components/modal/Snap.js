@@ -84,7 +84,7 @@ const Snap = ({ data }) => {
   return (
     <div>
       <button className="btn-mymodal btn-buy" onClick={handleBuy}>
-        MidTrans Payment
+        Midtrans Payment
       </button>
     </div>
   );

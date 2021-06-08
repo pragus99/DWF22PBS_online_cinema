@@ -29,21 +29,6 @@ function Comment({ content }) {
         </a>
       </noscript>
     </div>
-    // <div className="comment-container">
-    //   <div></div>
-    //   <form>
-    //     <h2 className="comment-title">Leave Comment</h2>
-    //     <textarea
-    //       className="comment-input"
-    //       type="text"
-    //       required
-    //       placeholder="Comment"
-    //       value={comment}
-    //       onChange={(e) => setComment(e.target.value)}
-    //     ></textarea>
-    //     <button className="comment-btn">Post Comment</button>
-    //   </form>
-    // </div>
   );
 }
 

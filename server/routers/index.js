@@ -10,12 +10,14 @@ const { admin } = require("../middleware/admin");
 const { uploadImg } = require("../middleware/uploadImg");
 
 const { register, login, authUser } = require("../controllers/authController");
+
 const {
   getCategories,
   createCategory,
   updateCategory,
   deleteCategory,
 } = require("../controllers/categoryController");
+
 const {
   getFilm,
   createFilm,
@@ -23,12 +25,14 @@ const {
   deleteFilm,
   orderFilm,
 } = require("../controllers/filmController");
+
 const {
   getPersons,
   getPerson,
   updatePerson,
   deletePerson,
 } = require("../controllers/personController");
+
 const {
   createTransaction,
   getTransactions,
@@ -39,6 +43,11 @@ const {
   notification,
 } = require("../controllers/transactionController");
 
+const {
+  createComment,
+  getComments,
+  deleteComment,
+} = require("../controllers/commentController");
 // user
 
 router.post("/register", register);
@@ -61,6 +70,10 @@ router.post(
   createTransaction
 );
 router.patch("/transaction/:id", auth, updateTransaction);
+
+router.get("/comments", auth, getComments);
+router.post("/comment", auth, createComment);
+router.delete("/comment/:id", auth, deleteComment);
 
 // Admin
 

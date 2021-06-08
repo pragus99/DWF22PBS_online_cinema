@@ -6,7 +6,7 @@ import { Modal } from "react-bootstrap";
 import ReactPlayer from "react-player/youtube";
 
 import Buy from "../modal/Buy";
-import Comment from "../service/Comment";
+import Comment from "../Comment";
 
 import convert from "../service/convert";
 import { API } from "../service/api";
@@ -23,14 +23,10 @@ const Detail = () => {
   const popUpOpen = () => setPopUp(true);
   const popUpClose = () => setPopUp(false);
 
-  let { data, isLoading, refetch } = useQuery(
-    "filmdetail",
-    async () => {
-      const response = await API.get("/film/" + id);
-      return response.data.data.film;
-    },
-    { refetchOnWindowFocus: false }
-  );
+  let { data, isLoading, refetch } = useQuery("filmdetail", async () => {
+    const response = await API.get("/film/" + id);
+    return response.data.data.film;
+  });
 
   if (state.user.transaction) {
     var filmAproove = state.user.transaction.filter((obj) => {
@@ -51,7 +47,10 @@ const Detail = () => {
       <Modal centered show={popUp} onHide={popUpClose}>
         <div className="modal-content">
           <div className="mymodal mymodal-pay popup">
-            <p>Please buy this film if you want to watch</p>
+            <p>
+              Please buy this film with bank transfer or midtrans payment if you
+              want to watch
+            </p>
           </div>
         </div>
       </Modal>
@@ -81,7 +80,10 @@ const Detail = () => {
                   </>
                 )
               ) : (
-                <Link className="btn-mymodal btn-buy" to={`/updateform/${id}`}>
+                <Link
+                  className="btn-mymodal btn-updatefilm"
+                  to={`/updateform/${id}`}
+                >
                   Update Film
                 </Link>
               )}
@@ -122,7 +124,7 @@ const Detail = () => {
                 <p>{data.description}</p>
               </div>
             </div>
-            <Comment contentid={data.id} />
+            <Comment />
           </div>
         </div>
       )}

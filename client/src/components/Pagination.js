@@ -30,6 +30,7 @@ const Pagination = ({ Card, data, limit, title }) => {
 
       <div className="pagination">
         <button
+          title="Previous"
           onClick={goToPreviousPage}
           className={`prev ${activePage === 1 ? "disabled" : ""}`}
         >
@@ -42,6 +43,7 @@ const Pagination = ({ Card, data, limit, title }) => {
         </button>
 
         <button
+          title="Next"
           onClick={goToNextPage}
           className={`next ${activePage === pages ? "disabled" : ""}`}
         >
